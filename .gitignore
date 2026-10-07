@@ -94,7 +94,6 @@ desktop.ini
 
 *.pkl
 *.pickle
-*.joblib
 *.h5
 *.onnx
 
