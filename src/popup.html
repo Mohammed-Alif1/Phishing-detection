@@ -1,28 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>SentinelAI</title>
-    <link rel="stylesheet" href="./popup.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SentinelAI Security</title>
+  <link rel="stylesheet" href="./popup.css">
 </head>
 <body>
-    <h2>SentinelAI</h2>
-    <div class="card">
-        <h3>Website</h3>
-        <p id="website">Loading...</p>
-        <h3>Title</h3>
-        <p id="title">Loading...</p>
-        <h3>Status</h3>
-        <p id="status">🟢Ready to Scan</p>
-        <button id="scanBtn">Scan Website</button>
-        <div id="scanResult">
-            <h3>Scan Result</h3>
-            <p><strong>Risk Score:</strong> <span id="riskScore">--</span></p>
-            <p><strong>Prediction:</strong> <span id="prediction">--</span></p>
-            <p><strong>Confidence:</strong> <span id="confidence">--</span></p>
-        </div>
-    </div>
-    <script type="module" src="./popup.ts"></script>
+  <main class="app-shell">
+    <!-- 1. SENTINELAI HEADER -->
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">S</div>
+      <div class="brand-copy">
+        <h1>Sentinel<span>AI</span></h1>
+        <p>Browser security</p>
+      </div>
+      <div class="live-pill"><span></span> LOCAL ENGINE</div>
+    </header>
 
+    <!-- 2. SCAN SECTION FIRST -->
+    <section class="scan-card">
+      <label class="section-label" for="urlInput">SCAN A URL</label>
+      <input id="urlInput" class="url-input" type="url" spellcheck="false" placeholder="https://example.com">
+      <p class="input-hint">Paste a URL to test it safely. SentinelAI analyses the text only.</p>
+      <button id="scanBtn" type="button">
+        <span id="scanButtonText">Run security scan</span>
+        <span class="button-arrow" aria-hidden="true">→</span>
+      </button>
+    </section>
+
+    <!-- 3. CURRENT WEBSITE (COMPACT) -->
+    <section class="site-card">
+      <div class="section-label">CURRENT WEBSITE</div>
+      <div class="site-row">
+        <div class="site-icon" aria-hidden="true">↗</div>
+        <div class="site-info">
+          <div id="website" class="hostname">Loading website…</div>
+          <div id="title" class="page-title">Reading active tab</div>
+        </div>
+      </div>
+      <div class="url-line" id="fullUrl">Waiting for active tab URL</div>
+    </section>
+
+    <!-- 4. SECURITY ASSESSMENT -->
+    <section class="assessment-card" id="assessmentCard">
+      <div class="assessment-head">
+        <div>
+          <div class="section-label">SECURITY ASSESSMENT</div>
+          <h2 id="prediction">Ready to scan</h2>
+          <p id="status" class="status-line"><span class="status-dot"></span> Engine ready</p>
+        </div>
+        <div class="score-ring" id="scoreRing">
+          <strong id="riskScore">--</strong>
+          <span>RISK / 100</span>
+        </div>
+      </div>
+
+      <div class="meter-track"><div id="riskMeter" class="meter-fill"></div></div>
+      <div class="meter-labels"><span>LOW RISK</span><span>HIGH RISK</span></div>
+    </section>
+
+    <!-- 5. ANALYSIS -->
+    <section class="signals-section">
+      <div class="section-heading">
+        <div>
+          <div class="section-label">ANALYSIS</div>
+          <h2>Detection signals</h2>
+        </div>
+        <span id="signalCount" class="count-badge">0 signals</span>
+      </div>
+      <div id="reasons" class="signal-list">
+        <div class="empty-state">Run a scan to inspect URL and domain patterns.</div>
+      </div>
+    </section>
+
+    <!-- 6. AD & TRACKER PROTECTION -->
+    <section class="adblock-card" aria-labelledby="adblockTitle">
+      <div class="adblock-row">
+        <div class="adblock-copy">
+          <div class="section-label">AD &amp; TRACKER PROTECTION</div>
+          <h2 id="adblockTitle">Ad &amp; Tracker Protection</h2>
+          <p id="adblockStatus">Loading protection status…</p>
+          <p id="adblockStat" class="adblock-stat"></p>
+        </div>
+        <label class="switch" aria-label="Toggle ad and tracker blocking">
+          <input id="adblockToggle" type="checkbox">
+          <span class="switch-track"></span>
+        </label>
+      </div>
+      <div class="allowlist-row">
+        <span id="allowlistStatus" class="allowlist-note"></span>
+        <button id="allowlistBtn" type="button" class="allowlist-btn" style="display:none">Allow this site</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span class="footer-dot"></span>
+      <span>Prototype · URL-based analysis only</span>
+      <span id="engineState">API disconnected</span>
+    </footer>
+    <p class="disclaimer">A low-risk result is not proof that a website is safe. Do not enter credentials based only on this scan.</p>
+  </main>
+  <script type="module" src="./popup.ts"></script>
 </body>
 </html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SentinelAI — Network Blocking Test Page</title>
+  <style>
+    body { font-family: monospace; background: #0d1a2d; color: #cdd8ec; padding: 24px; }
+    h1 { color: #4be0c1; margin-bottom: 4px; }
+    p { color: #7f93b3; font-size: 13px; margin-bottom: 20px; }
+    table { border-collapse: collapse; width: 100%; font-size: 12px; }
+    th { background: #111d30; text-align: left; padding: 8px 12px; color: #7f93b3; border-bottom: 1px solid #1e2d44; }
+    td { padding: 7px 12px; border-bottom: 1px solid #141f31; }
+    .status { font-weight: bold; }
+    .blocked { color: #4be0c1; }
+    .loaded  { color: #ff647c; }
+    .pending { color: #ffc66e; }
+    #summary { margin-top: 18px; font-size: 13px; color: #7f93b3; }
+    #summary strong { color: #4be0c1; }
+  </style>
+</head>
+<body>
+  <h1>SentinelAI — Network Blocking Test</h1>
+  <p>Load this page with the SentinelAI extension enabled. Each row attempts a real request to a domain covered by the rules file. A <span style="color:#4be0c1">BLOCKED</span> result means Chrome DNR intercepted the request. A <span style="color:#ff647c">LOADED</span> result means the request reached the network.</p>
+  <p style="color:#ffc66e">⚠ Load this page from a local web server (e.g. <code>npx serve .</code>) or a file:// URL. Ensure the SentinelAI extension is installed and blocking is ON.</p>
+
+  <table id="resultsTable">
+    <thead>
+      <tr><th>Rule ID</th><th>Domain</th><th>Test URL</th><th>Type</th><th>Status</th></tr>
+    </thead>
+    <tbody id="resultsBody"></tbody>
+  </table>
+  <div id="summary"></div>
+
+  <!-- Hidden test elements removed after test completes -->
+  <div id="testContainer" style="display:none"></div>
+
+  <script>
+    const TESTS = [
+      { id: 1,  domain: "doubleclick.net",          url: "https://doubleclick.net/favicon.ico",                    type: "fetch" },
+      { id: 2,  domain: "googlesyndication.com",    url: "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", type: "script" },
+      { id: 6,  domain: "adnxs.com",                url: "https://ib.adnxs.com/ttj",                               type: "fetch" },
+      { id: 7,  domain: "taboola.com",               url: "https://cdn.taboola.com/libtrc/impl.263.js",             type: "script" },
+      { id: 8,  domain: "outbrain.com",              url: "https://widgets.outbrain.com/outbrain.js",               type: "script" },
+      { id: 13, domain: "criteo.com",                url: "https://static.criteo.net/js/ld/publishertag.prebid.108.js", type: "script" },
+      { id: 51, domain: "google-analytics.com",      url: "https://www.google-analytics.com/analytics.js",          type: "script" },
+      { id: 56, domain: "hotjar.com",                url: "https://static.hotjar.com/c/hotjar.js",                  type: "script" },
+      { id: 62, domain: "pixel.facebook.com",        url: "https://pixel.facebook.com/tr?id=test&ev=PageView",      type: "fetch" },
+      { id: 93, domain: "bluekai.com",               url: "https://tags.bluekai.com/site/1",                        type: "fetch" },
+    ];
+
+    const tbody = document.getElementById("resultsBody");
+    const summary = document.getElementById("summary");
+
+    let blocked = 0;
+    let loaded = 0;
+    let pending = TESTS.length;
+
+    function updateSummary() {
+      pending = TESTS.length - blocked - loaded;
+      summary.innerHTML = `Results: <strong>${blocked} blocked</strong> · ${loaded} loaded · ${pending} pending`;
+    }
+
+    function setStatus(row, result) {
+      const td = row.querySelector(".status");
+      td.textContent = result;
+      td.className = "status " + (result === "BLOCKED" ? "blocked" : result === "LOADED" ? "loaded" : "pending");
+      updateSummary();
+    }
+
+    const container = document.getElementById("testContainer");
+
+    TESTS.forEach((test) => {
+      // Build table row
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${test.id}</td><td>${test.domain}</td><td style="color:#7f93b3;word-break:break-all;">${test.url}</td><td>${test.type}</td><td class="status pending">Testing…</td>`;
+      tbody.appendChild(tr);
+
+      if (test.type === "fetch") {
+        fetch(test.url, { mode: "no-cors", cache: "no-store" })
+          .then(() => setStatus(tr, "LOADED"))
+          .catch((err) => {
+            // fetch failure can mean blocked OR network error
+            setStatus(tr, err.message.includes("Failed to fetch") ? "BLOCKED" : "LOADED");
+          });
+      } else if (test.type === "script") {
+        const script = document.createElement("script");
+        script.src = test.url;
+        script.onload = () => setStatus(tr, "LOADED");
+        script.onerror = () => setStatus(tr, "BLOCKED");
+        container.appendChild(script);
+      }
+    });
+
+    updateSummary();
+  </script>
+</body>
+</html>

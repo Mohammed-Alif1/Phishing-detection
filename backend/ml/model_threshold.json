@@ -1,0 +1,21 @@
+{
+  "model": "extra_trees",
+  "threshold": 0.24,
+  "label_mapping": {
+    "0": "legitimate",
+    "1": "phishing"
+  },
+  "feature_columns": [
+    "url_length",
+    "hostname_length",
+    "is_https",
+    "dot_count",
+    "hyphen_count",
+    "has_at_symbol",
+    "is_ip",
+    "digit_count",
+    "keyword_count",
+    "path_length",
+    "num_slashes"
+  ]
+}

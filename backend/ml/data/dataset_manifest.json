@@ -1,0 +1,45 @@
+{
+  "dataset_name": "PhiUSIIL Phishing URL (Website) Dataset",
+  "uci_dataset_id": 967,
+  "source": "https://archive.ics.uci.edu/dataset/967/phiusiil+phishing+url+website+dataset",
+  "citation": "Prasad, A. & Chandra, S. (2024). PhiUSIIL Phishing URL (Website) Dataset. UCI Machine Learning Repository. https://doi.org/10.1016/j.cose.2023.103545.",
+  "license": "CC BY 4.0 (verify current terms on the official UCI page before redistribution)",
+  "downloaded_at_utc": "2026-10-12T18:52:47.161387+00:00",
+  "source_rows": 235795,
+  "rows_skipped_invalid_or_unusable": 0,
+  "rows_before_deduplication": 235795,
+  "conflicting_label_urls_removed": 1,
+  "rows_after_deduplication": 234687,
+  "class_mapping": {
+    "0": "phishing",
+    "1": "legitimate"
+  },
+  "project_label_mapping": {
+    "0": "legitimate",
+    "1": "phishing"
+  },
+  "class_counts_project_label": {
+    "0": 134849,
+    "1": 99838
+  },
+  "unique_domain_groups": 175508,
+  "feature_columns": [
+    "url_length",
+    "hostname_length",
+    "is_https",
+    "dot_count",
+    "hyphen_count",
+    "has_at_symbol",
+    "is_ip",
+    "digit_count",
+    "keyword_count",
+    "path_length",
+    "num_slashes"
+  ],
+  "notes": [
+    "Only the raw URL column is used; webpage/content-derived UCI features are not used because this scanner only sees URLs.",
+    "Exact normalized URL duplicates are removed. URLs with conflicting labels are removed.",
+    "Domain groups are reserved for group-aware train/validation/test splitting.",
+    "This dataset is not a live feed and may not represent current threats."
+  ]
+}

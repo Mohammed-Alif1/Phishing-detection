@@ -1,0 +1,231 @@
+{
+  "initialRulesets": [
+    "ad_tracker_rules"
+  ],
+  "popupGetState": {
+    "ok": true,
+    "enabled": true
+  },
+  "test1": [
+    {
+      "domain": "doubleclick.net",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "googlesyndication.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "adnxs.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "taboola.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "outbrain.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "google-analytics.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "example.com (benign)",
+      "result": "LOADED",
+      "blocked": false
+    }
+  ],
+  "toggleOffResponse": {
+    "ok": true,
+    "enabled": false
+  },
+  "rulesetsOff": [],
+  "test2": [
+    {
+      "domain": "doubleclick.net",
+      "result": "LOADED",
+      "blocked": false
+    },
+    {
+      "domain": "googlesyndication.com",
+      "result": "LOADED",
+      "blocked": false
+    },
+    {
+      "domain": "adnxs.com",
+      "result": "LOADED",
+      "blocked": false
+    },
+    {
+      "domain": "taboola.com",
+      "result": "LOADED",
+      "blocked": false
+    },
+    {
+      "domain": "outbrain.com",
+      "result": "LOADED",
+      "blocked": false
+    },
+    {
+      "domain": "google-analytics.com",
+      "result": "LOADED",
+      "blocked": false
+    },
+    {
+      "domain": "example.com (benign)",
+      "result": "LOADED",
+      "blocked": false
+    }
+  ],
+  "toggleOnResponse": {
+    "ok": true,
+    "enabled": true
+  },
+  "rulesetsOn": [
+    "ad_tracker_rules"
+  ],
+  "test3": [
+    {
+      "domain": "doubleclick.net",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "googlesyndication.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "adnxs.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "taboola.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "outbrain.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "google-analytics.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "example.com (benign)",
+      "result": "LOADED",
+      "blocked": false
+    }
+  ],
+  "addAllowResponse": {
+    "ok": true,
+    "list": [
+      "127.0.0.1"
+    ]
+  },
+  "dynamicRules": [
+    {
+      "action": {
+        "type": "allow"
+      },
+      "condition": {
+        "initiatorDomains": [
+          "127.0.0.1"
+        ]
+      },
+      "id": 10000,
+      "priority": 2
+    }
+  ],
+  "test4": [
+    {
+      "domain": "doubleclick.net",
+      "result": "LOADED",
+      "blocked": false
+    },
+    {
+      "domain": "googlesyndication.com",
+      "result": "LOADED",
+      "blocked": false
+    },
+    {
+      "domain": "adnxs.com",
+      "result": "LOADED",
+      "blocked": false
+    },
+    {
+      "domain": "taboola.com",
+      "result": "LOADED",
+      "blocked": false
+    },
+    {
+      "domain": "outbrain.com",
+      "result": "LOADED",
+      "blocked": false
+    },
+    {
+      "domain": "google-analytics.com",
+      "result": "LOADED",
+      "blocked": false
+    },
+    {
+      "domain": "example.com (benign)",
+      "result": "LOADED",
+      "blocked": false
+    }
+  ],
+  "removeAllowResponse": {
+    "ok": true,
+    "list": []
+  },
+  "dynamicRulesAfter": [],
+  "test5": [
+    {
+      "domain": "doubleclick.net",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "googlesyndication.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "adnxs.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "taboola.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "outbrain.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "google-analytics.com",
+      "result": "BLOCKED (Failed to fetch)",
+      "blocked": true
+    },
+    {
+      "domain": "example.com (benign)",
+      "result": "LOADED",
+      "blocked": false
+    }
+  ]
+}
