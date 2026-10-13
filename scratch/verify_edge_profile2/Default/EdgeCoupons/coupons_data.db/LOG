@@ -1,0 +1,5 @@
+2026/10/13-10:19:05.960 7a28 Creating DB D:\projects\Phishing-detection\scratch\verify_edge_profile2\Default\EdgeCoupons/coupons_data.db since it was missing.
+2026/10/13-10:19:05.976 7a28 Reusing MANIFEST D:\projects\Phishing-detection\scratch\verify_edge_profile2\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/10/13-10:19:09.861 2be8 Level-0 table #5: started
+2026/10/13-10:19:09.872 2be8 Level-0 table #5: 683273 bytes OK
+2026/10/13-10:19:09.877 2be8 Delete type=0 #3
