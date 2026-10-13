@@ -1,0 +1,246 @@
+{
+  "dataset_file": "backend/ml/data/dataset.csv",
+  "label_mapping": {
+    "0": "legitimate",
+    "1": "phishing"
+  },
+  "feature_columns": [
+    "url_length",
+    "hostname_length",
+    "is_https",
+    "dot_count",
+    "hyphen_count",
+    "has_at_symbol",
+    "is_ip",
+    "digit_count",
+    "keyword_count",
+    "path_length",
+    "num_slashes"
+  ],
+  "split_method": "StratifiedGroupKFold by registrable domain; test set held out before model/threshold selection",
+  "seed": 42,
+  "row_counts": {
+    "all": 234687,
+    "train": 140811,
+    "validation": 46938,
+    "test": 46938
+  },
+  "class_counts": {
+    "all": {
+      "0": 134849,
+      "1": 99838
+    },
+    "train": {
+      "0": 80909,
+      "1": 59902
+    },
+    "validation": {
+      "0": 26970,
+      "1": 19968
+    },
+    "test": {
+      "0": 26970,
+      "1": 19968
+    }
+  },
+  "domain_group_counts": {
+    "train": 105306,
+    "validation": 35099,
+    "test": 35103
+  },
+  "domain_overlap_checks": {
+    "train_validation": 0,
+    "train_test": 0,
+    "validation_test": 0
+  },
+  "selected_model": "extra_trees",
+  "selected_threshold": 0.24,
+  "selected_model_test_metrics": {
+    "threshold": 0.24,
+    "accuracy": 0.9368102603434317,
+    "balanced_accuracy": 0.9332332622072959,
+    "precision_phishing": 0.9402382185396168,
+    "recall_phishing": 0.9092548076923077,
+    "f1_phishing": 0.9244869901726157,
+    "roc_auc": 0.9725225154462935,
+    "confusion_matrix_labels_order": [
+      "legitimate_0",
+      "phishing_1"
+    ],
+    "confusion_matrix": [
+      [
+        25816,
+        1154
+      ],
+      [
+        1812,
+        18156
+      ]
+    ],
+    "false_positives": 1154,
+    "false_negatives": 1812,
+    "support": 46938,
+    "class_counts": {
+      "0": 26970,
+      "1": 19968
+    }
+  },
+  "existing_model_baseline_test_metrics_threshold_0_40": {
+    "threshold": 0.4,
+    "accuracy": 0.9342323916656015,
+    "balanced_accuracy": 0.9257372641610336,
+    "precision_phishing": 0.9737861352792591,
+    "recall_phishing": 0.8687900641025641,
+    "f1_phishing": 0.9182965884127783,
+    "roc_auc": 0.9725225154462935,
+    "confusion_matrix_labels_order": [
+      "legitimate_0",
+      "phishing_1"
+    ],
+    "confusion_matrix": [
+      [
+        26503,
+        467
+      ],
+      [
+        2620,
+        17348
+      ]
+    ],
+    "false_positives": 467,
+    "false_negatives": 2620,
+    "support": 46938,
+    "class_counts": {
+      "0": 26970,
+      "1": 19968
+    }
+  },
+  "all_models": {
+    "random_forest": {
+      "validation_threshold_selection": {
+        "threshold": 0.2,
+        "selection_score": 0.9511054251789068,
+        "validation_f2": 0.9511054251789068,
+        "validation_precision": 0.9431119920713578,
+        "validation_recall": 0.953125,
+        "validation_positive_rate": 0.42992884230261197
+      },
+      "test_metrics": {
+        "threshold": 0.2,
+        "accuracy": 0.9374280966381183,
+        "balanced_accuracy": 0.9334588511807992,
+        "precision_phishing": 0.9438623924941361,
+        "recall_phishing": 0.9068509615384616,
+        "f1_phishing": 0.9249865910658187,
+        "roc_auc": 0.9710036856151895,
+        "confusion_matrix_labels_order": [
+          "legitimate_0",
+          "phishing_1"
+        ],
+        "confusion_matrix": [
+          [
+            25893,
+            1077
+          ],
+          [
+            1860,
+            18108
+          ]
+        ],
+        "false_positives": 1077,
+        "false_negatives": 1860,
+        "support": 46938,
+        "class_counts": {
+          "0": 26970,
+          "1": 19968
+        }
+      }
+    },
+    "extra_trees": {
+      "validation_threshold_selection": {
+        "threshold": 0.24,
+        "selection_score": 0.9535129951854885,
+        "validation_f2": 0.9535129951854885,
+        "validation_precision": 0.9431874320719297,
+        "validation_recall": 0.9561298076923077,
+        "validation_positive_rate": 0.4312497336912523
+      },
+      "test_metrics": {
+        "threshold": 0.24,
+        "accuracy": 0.9368102603434317,
+        "balanced_accuracy": 0.9332332622072959,
+        "precision_phishing": 0.9402382185396168,
+        "recall_phishing": 0.9092548076923077,
+        "f1_phishing": 0.9244869901726157,
+        "roc_auc": 0.9725225154462935,
+        "confusion_matrix_labels_order": [
+          "legitimate_0",
+          "phishing_1"
+        ],
+        "confusion_matrix": [
+          [
+            25816,
+            1154
+          ],
+          [
+            1812,
+            18156
+          ]
+        ],
+        "false_positives": 1154,
+        "false_negatives": 1812,
+        "support": 46938,
+        "class_counts": {
+          "0": 26970,
+          "1": 19968
+        }
+      }
+    },
+    "logistic_regression": {
+      "validation_threshold_selection": {
+        "threshold": 0.2,
+        "selection_score": 0.9441778678508627,
+        "validation_f2": 0.9441778678508627,
+        "validation_precision": 0.9144176648867081,
+        "validation_recall": 0.9519230769230769,
+        "validation_positive_rate": 0.44286079509139714
+      },
+      "test_metrics": {
+        "threshold": 0.2,
+        "accuracy": 0.9243257062507989,
+        "balanced_accuracy": 0.9217972560323436,
+        "precision_phishing": 0.9162271805273834,
+        "recall_phishing": 0.9048477564102564,
+        "f1_phishing": 0.9105019149365048,
+        "roc_auc": 0.9663149851404814,
+        "confusion_matrix_labels_order": [
+          "legitimate_0",
+          "phishing_1"
+        ],
+        "confusion_matrix": [
+          [
+            25318,
+            1652
+          ],
+          [
+            1900,
+            18068
+          ]
+        ],
+        "false_positives": 1652,
+        "false_negatives": 1900,
+        "support": 46938,
+        "class_counts": {
+          "0": 26970,
+          "1": 19968
+        }
+      }
+    }
+  },
+  "important_limitations": [
+    "A domain-grouped test is more conservative than a random URL split, but does not prove performance on all future phishing campaigns.",
+    "Dataset labels and collection time can be noisy or stale.",
+    "The risk score emitted by the application should not be described as a calibrated probability unless calibrated separately.",
+    "Threshold was selected using validation data only; final test data was not used to select the model or threshold."
+  ]
+}

@@ -1,0 +1,6 @@
+# ML training/data preparation dependencies (add to backend environment)
+pandas>=2.0
+scikit-learn>=1.3
+joblib>=1.3
+ucimlrepo>=0.0.7
+tldextract>=5.1.2
